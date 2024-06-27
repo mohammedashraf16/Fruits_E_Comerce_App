@@ -8,7 +8,7 @@ static const routeName = "splash";
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SplashViewBody(),
+      body: SafeArea(child: SplashViewBody()),
     );
   }
 }
