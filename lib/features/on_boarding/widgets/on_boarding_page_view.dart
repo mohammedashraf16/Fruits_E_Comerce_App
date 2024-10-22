@@ -13,7 +13,7 @@ final PageController pageController;
       controller: pageController,
       children:  [
         PageViewItem(
-          isVisible: (pageController.hasClients?pageController.page!.round():0)==0,
+          isVisible: true,
           image: Assets.assetsImagesPageViewItem1Image,
           backgroundImage: Assets.assetsImagesPageViewItem1BackgroundImage,
           subTitle:
@@ -31,13 +31,13 @@ final PageController pageController;
             ],
           ),
         ),
-        PageViewItem(
-          isVisible: (pageController.hasClients?pageController.page!.round():0)!=0,
+        const PageViewItem(
+          isVisible: false,
           image: Assets.assetsImagesPageViewItem2Image,
           backgroundImage: Assets.assetsImagesPageViewItem2BackgroundImage,
           subTitle:
           "نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية",
-          title: const Text(
+          title: Text(
             "ابحث وتسوق",
             textAlign: TextAlign.center,
             style: TextStyle(
