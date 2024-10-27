@@ -4,9 +4,10 @@ import 'package:fruits_app/core/helper_functions/on_generate_routes.dart';
 import 'package:fruits_app/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_app/features/splash/presentation/views/splash_view.dart';
 
+import 'core/utils/app_colors.dart';
 import 'generated/l10n.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   runApp(const FruitHub());
@@ -17,11 +18,15 @@ class FruitHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         fontFamily: "Cairo",
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.primaryColor,
+        ),
       ),
-      localizationsDelegates: const[
+      localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
