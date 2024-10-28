@@ -5,9 +5,9 @@ import 'package:fruits_app/core/utils/app_text_styles.dart';
 import 'package:fruits_app/core/utils/values_manager.dart';
 import 'package:fruits_app/core/widgets/custom_button.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_app/features/auth/presentaion/views/widgets/dont_have_an_account_widget.dart';
-import 'package:fruits_app/features/auth/presentaion/views/widgets/or_divider_widget.dart';
-import 'package:fruits_app/features/auth/presentaion/views/widgets/social_login_button.dart';
+import 'package:fruits_app/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
+import 'package:fruits_app/features/auth/presentation/views/widgets/or_divider_widget.dart';
+import 'package:fruits_app/features/auth/presentation/views/widgets/social_login_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
