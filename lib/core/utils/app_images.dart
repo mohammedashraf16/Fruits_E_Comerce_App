@@ -35,5 +35,6 @@ class Assets {
   static const String imagesAppleIcon = 'assets/images/apple_icon.svg';
   static const String imagesFacebookIcon = 'assets/images/facebook_icon.svg';
   static const String imagesGoogleIcon = 'assets/images/google_icon.svg';
+  static const String imagesCheckIcon = 'assets/images/check_icon.svg';
 }
 
