@@ -4,10 +4,12 @@ import 'package:fruits_app/features/auth/presentation/views/widgets/sign_up_view
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
-static const String routeName ="signup";
+
+  static const String routeName = "signup";
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: buildAppBar(title: "حساب جديد"),
       body: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
