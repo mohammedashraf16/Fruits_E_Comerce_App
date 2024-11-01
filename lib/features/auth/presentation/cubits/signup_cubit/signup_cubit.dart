@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruits_app/features/auth/domain/entity/user_entity.dart';
 import 'package:fruits_app/features/auth/domain/repos/auth_repo.dart';
-
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
