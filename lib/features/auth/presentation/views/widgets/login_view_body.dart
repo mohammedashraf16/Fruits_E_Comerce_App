@@ -11,7 +11,6 @@ import 'package:fruits_app/features/auth/presentation/cubits/sign_in_cubit/sign_
 import 'package:fruits_app/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:fruits_app/features/auth/presentation/views/widgets/or_divider_widget.dart';
 import 'package:fruits_app/features/auth/presentation/views/widgets/social_login_button.dart';
-import 'package:fruits_app/main.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -21,9 +20,10 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  AutovalidateMode autoValidateMode =AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late String email ,password;
+  late String email, password;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,16 +36,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 24),
-               CustomTextFormField(
-                 onSaved: (value){
-                   email = value!;
-                 },
+              CustomTextFormField(
+                onSaved: (value) {
+                  email = value!;
+                },
                 hintText: 'البريد الالكتروني',
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
               PasswordField(
-                onSaved: (value){
+                onSaved: (value) {
                   password = value!;
                 },
               ),
@@ -62,10 +62,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               const SizedBox(height: 33),
               CustomButton(
                 onPressed: () {
-                  if(formKey.currentState!.validate()){
+                  if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<SignInCubit>().signInWithEmailAndPassword(email, password);
-                  }else{
+                    context
+                        .read<SignInCubit>()
+                        .signInWithEmailAndPassword(email, password);
+                  } else {
                     autoValidateMode = AutovalidateMode.always;
                   }
                 },
@@ -76,11 +78,24 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               const SizedBox(height: 49),
               const OrDividerWidget(),
               const SizedBox(height: 16),
-              SocialLoginButton(title: "تسجيل بواسطة جوجل", image: Assets.imagesGoogleIcon, onPressed: (){}),
+              SocialLoginButton(
+                  title: "تسجيل بواسطة جوجل",
+                  image: Assets.imagesGoogleIcon,
+                  onPressed: () {
+                   context.read<SignInCubit>().signInWithGoogle();
+                  }),
               const SizedBox(height: 16),
-              SocialLoginButton(title: "تسجيل بواسطة أبل", image: Assets.imagesAppleIcon, onPressed: (){}),
+              SocialLoginButton(
+                  title: "تسجيل بواسطة أبل",
+                  image: Assets.imagesAppleIcon,
+                  onPressed: () {}),
               const SizedBox(height: 16),
-              SocialLoginButton(title: "تسجيل بواسطة فيسبوك", image: Assets.imagesFacebookIcon, onPressed: (){}),
+              SocialLoginButton(
+                  title: "تسجيل بواسطة فيسبوك",
+                  image: Assets.imagesFacebookIcon,
+                  onPressed: () {
+                    context.read<SignInCubit>().signInWithFacebook();
+                  }),
             ],
           ),
         ),

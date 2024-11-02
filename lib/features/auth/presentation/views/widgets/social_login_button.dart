@@ -27,6 +27,7 @@ class SocialLoginButton extends StatelessWidget {
               color: Color(0xffDCDEDE),
               width: 1,
             )),
+        onPressed: onPressed,
         child: ListTile(
           visualDensity: const VisualDensity(
             vertical: VisualDensity.minimumDensity
@@ -38,7 +39,6 @@ class SocialLoginButton extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        onPressed: () {},
       ),
     );
   }
