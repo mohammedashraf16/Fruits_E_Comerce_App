@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/utils/app_colors.dart';
@@ -12,14 +14,14 @@ import 'package:fruits_app/features/auth/presentation/views/widgets/dont_have_an
 import 'package:fruits_app/features/auth/presentation/views/widgets/or_divider_widget.dart';
 import 'package:fruits_app/features/auth/presentation/views/widgets/social_login_button.dart';
 
-class LoginViewBody extends StatefulWidget {
-  const LoginViewBody({super.key});
+class SignInViewBody extends StatefulWidget {
+  const SignInViewBody({super.key});
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
+  State<SignInViewBody> createState() => _SignInViewBodyState();
 }
 
-class _LoginViewBodyState extends State<LoginViewBody> {
+class _SignInViewBodyState extends State<SignInViewBody> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String email, password;
@@ -85,11 +87,18 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                    context.read<SignInCubit>().signInWithGoogle();
                   }),
               const SizedBox(height: 16),
-              SocialLoginButton(
-                  title: "تسجيل بواسطة أبل",
-                  image: Assets.imagesAppleIcon,
-                  onPressed: () {}),
-              const SizedBox(height: 16),
+             Platform.isIOS? Column(
+                children: [
+                  SocialLoginButton(
+                      title: "تسجيل بواسطة أبل",
+                      image: Assets.imagesAppleIcon,
+                      onPressed: () {
+                        context.read<SignInCubit>().signInWithApple();
+                      }),
+                  const SizedBox(height: 16),
+                ],
+              ):const SizedBox(),
+
               SocialLoginButton(
                   title: "تسجيل بواسطة فيسبوك",
                   image: Assets.imagesFacebookIcon,
