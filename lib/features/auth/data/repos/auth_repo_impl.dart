@@ -35,16 +35,18 @@ class AuthRepoImpl extends AuthRepo {
       await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      await deleteUser(user);
       return Left(ServerFailure(e.message));
     } catch (e) {
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      await deleteUser(user);
       log("Exception in AuthRepoImpl.createUserWithEmailAndPassword : ${e.toString()}");
       return Left(ServerFailure("لقد حدث خطأ ما. الرجاء المحاوله مره اخري"));
+    }
+  }
+
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthService.deleteUser();
     }
   }
 
@@ -65,12 +67,17 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithGoogle();
-      return Right(UserModel.formJson(user));
+       user = await firebaseAuthService.signInWithGoogle();
+       var userEntity = UserModel.formJson(user);
+       await addUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomException catch (e) {
+      await deleteUser(user);
       return Left(ServerFailure(e.message));
     } catch (e) {
+      await deleteUser(user);
       log("Exception in AuthRepoImpl.signInWithGoogle : ${e.toString()}");
       return Left(ServerFailure("لقد حدث خطأ ما. الرجاء المحاوله مره اخري"));
     }
@@ -78,12 +85,17 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInWithFacebook() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithFacebook();
-      return Right(UserModel.formJson(user));
+      user = await firebaseAuthService.signInWithFacebook();
+      var userEntity= UserModel.formJson(user);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomException catch (e) {
+      await deleteUser(user);
       return Left(ServerFailure(e.message));
     } catch (e) {
+      await deleteUser(user);
       log("Exception in AuthRepoImpl.signInWithFacebook : ${e.toString()}");
       return Left(ServerFailure("لقد حدث خطأ ما. الرجاء المحاوله مره اخري"));
     }
